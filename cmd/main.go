@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-
-	ferrules "github.com/u2386/ferrules/pkg"
+	"github.com/u2386/ferrules/pkg/ferrules"
 )
 
 func main() {
