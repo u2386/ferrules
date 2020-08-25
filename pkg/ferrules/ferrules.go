@@ -17,17 +17,6 @@ type rule struct {
 	actions     []Action
 }
 
-// NewRule creates a rule
-func NewRule(name string, desc string, priority int, condition Condition, actions []Action) Rule {
-	return &rule{
-		name:        RuleName(name),
-		description: desc,
-		priority:    RulePriority(priority),
-		condition:   condition,
-		actions:     actions,
-	}
-}
-
 func (r *rule) Name() RuleName {
 	return r.name
 }

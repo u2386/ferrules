@@ -6,11 +6,20 @@ import (
 )
 
 func main() {
-	rule := ferrules.NewRule("Hello World rule", "Always say hello world", 1, func(facts ferrules.Facts) bool {
-		return true
-	}, []ferrules.Action{func(facts ferrules.Facts) {
-		fmt.Println("hello world")
-	}})
+	rule := ferrules.
+		Given(func(facts ferrules.Facts) bool {
+			return true
+		}).
+		Will(func(facts ferrules.Facts) {
+			fmt.Println("hello world")
+		}).
+		Will(func(facts ferrules.Facts) {
+			fmt.Println("hello leon")
+		}).
+		Priority(1).
+		WithName("Hello World rule").
+		WithDescription("Always say hello world").
+		Build()
 
 	facts := make(map[string]ferrules.Fact)
 	rules := map[ferrules.RuleName]ferrules.Rule{
