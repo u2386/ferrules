@@ -18,5 +18,5 @@ func main() {
 		rule.Name(): rule,
 	}
 	engine := ferrules.DefaultRuleEngine{}
-	ferrules.Run(&engine, rules, facts)
+	engine.Fire(rules, facts)
 }

@@ -86,13 +86,18 @@ type Rules map[RuleName]Rule
 
 // Engine is an interface of rule engine
 type Engine interface {
-	fire([]Rule, Facts)
+	Fire(Rules, Facts)
 }
 
 // DefaultRuleEngine iterates over a set of rules which
 // sorted by their priority in nature order, evaluates the condition
 // of each rule, executes actions if the condition met
 type DefaultRuleEngine struct {
+}
+
+// Fire triggers all rules on given facts
+func (engine *DefaultRuleEngine) Fire(rules Rules, facts Facts) {
+	engine.fire(values(rules), facts)
 }
 
 func (engine *DefaultRuleEngine) fire(rules []Rule, facts Facts) {
@@ -106,14 +111,10 @@ func (engine *DefaultRuleEngine) fire(rules []Rule, facts Facts) {
 	engine.fire(rules[1:], facts)
 }
 
-// Run is an API for triggering rule engine
-func Run(engine Engine, rules Rules, facts Facts) {
-	values := func(rules map[RuleName]Rule) []Rule {
-		var ret []Rule
-		for _, rule := range rules {
-			ret = append(ret, rule)
-		}
-		return ret
+func values(rules map[RuleName]Rule) []Rule {
+	var ret []Rule
+	for _, rule := range rules {
+		ret = append(ret, rule)
 	}
-	engine.fire(values(rules), facts)
+	return ret
 }
