@@ -1,2 +1,2 @@
 # Ferrules
-Ferrules is ...
+Ferrules is a simple, stupid, declarative rule engine.
