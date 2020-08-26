@@ -1,5 +1,9 @@
 package ferrules
 
+import (
+	. "github.com/u2386/ferrules/internal/types"
+)
+
 // RequiredActionOngoing adds an action to a rule in a programming way
 type RequiredActionOngoing interface {
 	Will(Action) ActionOngoing

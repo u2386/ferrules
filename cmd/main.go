@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	. "github.com/u2386/ferrules/internal/types"
+
 	"github.com/u2386/ferrules/pkg/ferrules"
 )
 
@@ -23,7 +25,7 @@ func main() {
 		Build()
 
 	facts := make(map[string]ferrules.Fact)
-	rules := map[ferrules.RuleName]ferrules.Rule{
+	rules := map[RuleName]ferrules.Rule{
 		rule.Name(): rule,
 	}
 	engine := ferrules.DefaultRuleEngine{}
