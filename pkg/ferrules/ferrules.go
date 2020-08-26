@@ -13,10 +13,18 @@ type Rule interface {
 	Description() string
 }
 
-// Rules encapsulates a set of rules
+// Rules provides an interface for a set of rules
 type Rules interface {
 	values() []Rule
 	Add(Rule)
+}
+
+// Facts provides an interface for a set of facts
+type Facts interface {
+	Put(string, interface{})
+	Add(Fact)
+	Remove(string)
+	Get(string) (Fact, error)
 }
 
 // Engine is an interface of rule engine

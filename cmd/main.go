@@ -11,10 +11,23 @@ var rules ferrules.Rules = ferrules.RuleSet(ferrules.
 		return true
 	}).
 	Will(func(facts ferrules.Facts) {
-		fmt.Println("hello world")
+		fmt.Println("Hello World")
 	}).
 	Then(func(facts ferrules.Facts) {
-		fmt.Println("hello leon")
+		if fact, err := facts.Get("name"); err == nil {
+			fmt.Printf("Hello, %v\n", fact.Value.(string))
+		}
+	}).
+	Then(func(facts ferrules.Facts) {
+		if fact, err := facts.Get("name"); err == nil {
+			fact.Value = "Hugo"
+			facts.Add(fact)
+		}
+	}).
+	Then(func(facts ferrules.Facts) {
+		if fact, err := facts.Get("name"); err == nil {
+			fmt.Printf("Hello, %v\n", fact.Value.(string))
+		}
 	}).
 	Priority(1).
 	WithName("Hello World rule").
@@ -23,8 +36,8 @@ var rules ferrules.Rules = ferrules.RuleSet(ferrules.
 )
 
 func main() {
-	facts := make(map[string]ferrules.Fact)
-
+	facts := ferrules.FactSet()
+	facts.Put("name", "Leon")
 	engine := ferrules.DefaultRuleEngine{}
 	engine.Fire(rules, facts)
 }

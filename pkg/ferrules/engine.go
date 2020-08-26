@@ -8,10 +8,10 @@ type DefaultRuleEngine struct {
 
 // Fire triggers all rules on given facts
 func (engine *DefaultRuleEngine) Fire(rules Rules, facts Facts) {
-	engine.fire(rules.values(), facts)
+	fire(engine, rules.values(), facts)
 }
 
-func (engine *DefaultRuleEngine) fire(rules []Rule, facts Facts) {
+func fire(engine Engine, rules []Rule, facts Facts) {
 	if len(rules) == 0 {
 		return
 	}
@@ -19,5 +19,5 @@ func (engine *DefaultRuleEngine) fire(rules []Rule, facts Facts) {
 	if ok := rule.evaluate(facts); ok {
 		rule.execute(facts)
 	}
-	engine.fire(rules[1:], facts)
+	fire(engine, rules[1:], facts)
 }
