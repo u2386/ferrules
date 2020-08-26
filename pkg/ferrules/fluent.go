@@ -7,7 +7,7 @@ type RequiredActionOngoing interface {
 
 // ActionOngoing adds an action to a rule in a programming way
 type ActionOngoing interface {
-	Will(Action) ActionOngoing
+	Then(Action) ActionOngoing
 	PriorityOngoing
 }
 
@@ -28,6 +28,11 @@ type builder struct {
 }
 
 func (b *builder) Will(action Action) ActionOngoing {
+	b.rule.actions = append(b.rule.actions, action)
+	return b
+}
+
+func (b *builder) Then(action Action) ActionOngoing {
 	b.rule.actions = append(b.rule.actions, action)
 	return b
 }

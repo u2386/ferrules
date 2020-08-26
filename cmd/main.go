@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/u2386/ferrules/pkg/ferrules"
 )
 
@@ -13,7 +14,7 @@ func main() {
 		Will(func(facts ferrules.Facts) {
 			fmt.Println("hello world")
 		}).
-		Will(func(facts ferrules.Facts) {
+		Then(func(facts ferrules.Facts) {
 			fmt.Println("hello leon")
 		}).
 		Priority(1).
