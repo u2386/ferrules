@@ -24,43 +24,44 @@ type Outgoing interface {
 }
 
 type builder struct {
-	rule
+	R *rule
 }
 
 func (b *builder) Will(action Action) ActionOngoing {
-	b.rule.actions = append(b.rule.actions, action)
+	b.R.actions = append(b.R.actions, action)
 	return b
 }
 
 func (b *builder) Then(action Action) ActionOngoing {
-	b.rule.actions = append(b.rule.actions, action)
+	b.R.actions = append(b.R.actions, action)
 	return b
 }
 
 func (b *builder) Priority(n int) Outgoing {
-	b.rule.priority = RulePriority(n)
+	b.R.priority = RulePriority(n)
 	return b
 }
 
 func (b *builder) WithName(name string) Outgoing {
-	b.rule.name = RuleName(name)
+	b.R.name = RuleName(name)
 	return b
 }
 
 func (b *builder) WithDescription(desc string) Outgoing {
-	b.rule.description = desc
+	b.R.description = desc
 	return b
 }
 
 func (b *builder) Build() Rule {
-	r := b.rule
-	return &r
+	r := b.R
+	b.R = nil
+	return r
 }
 
 // Given is the entry of fluent api
 func Given(condition Condition) RequiredActionOngoing {
 	return &builder{
-		rule: rule{
+		R: &rule{
 			name:        "",
 			description: "",
 			condition:   condition,
