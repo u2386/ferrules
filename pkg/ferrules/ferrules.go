@@ -14,7 +14,10 @@ type Rule interface {
 }
 
 // Rules encapsulates a set of rules
-type Rules map[RuleName]Rule
+type Rules interface {
+	values() []Rule
+	Add(Rule)
+}
 
 // Engine is an interface of rule engine
 type Engine interface {

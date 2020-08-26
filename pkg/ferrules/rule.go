@@ -4,6 +4,32 @@ import (
 	. "github.com/u2386/ferrules/internal/types"
 )
 
+type ruleSet struct {
+	rules map[RuleName]Rule
+}
+
+func (rs *ruleSet) values() []Rule {
+	var ret []Rule
+	for _, rule := range rs.rules {
+		ret = append(ret, rule)
+	}
+	return ret
+}
+
+func (rs *ruleSet) Add(rule Rule) {
+	rs.rules[rule.Name()] = rule
+}
+
+// RuleSet creates a new ruleset
+func RuleSet(rules ...Rule) Rules {
+	rs := new(ruleSet)
+	rs.rules = make(map[RuleName]Rule)
+	for _, rule := range rules {
+		rs.rules[rule.Name()] = rule
+	}
+	return rs
+}
+
 type rule struct {
 	name        RuleName
 	description string
