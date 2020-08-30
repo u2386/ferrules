@@ -30,7 +30,8 @@ func RuleSet(rules ...Rule) Rules {
 	return rs
 }
 
-type rule struct {
+// DefaultRule is a basic rule
+type DefaultRule struct {
 	name        RuleName
 	description string
 	priority    RulePriority
@@ -38,23 +39,26 @@ type rule struct {
 	actions     []Action
 }
 
-func (r *rule) Name() RuleName {
+// Name gives the name of rule
+func (r DefaultRule) Name() RuleName {
 	return r.name
 }
 
-func (r *rule) Description() string {
+// Description gives the description of rule
+func (r DefaultRule) Description() string {
 	return r.description
 }
 
-func (r *rule) Priority() RulePriority {
+// Priority gives the priority of rule
+func (r DefaultRule) Priority() RulePriority {
 	return r.priority
 }
 
-func (r *rule) evaluate(facts Facts) bool {
+func (r DefaultRule) evaluate(facts Facts) bool {
 	return r.condition(facts)
 }
 
-func (r *rule) execute(facts Facts) {
+func (r DefaultRule) execute(facts Facts) {
 	execute(r.actions, facts)
 }
 
