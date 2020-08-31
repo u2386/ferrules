@@ -23,8 +23,6 @@ github.com/onsi/ginkgo v1.14.0/go.mod h1:iSB4RoI2tjJc9BBv4NKIKWKya62Rps+oPG/Lv9k
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/onsi/gomega v1.10.1 h1:o0+MgICZLuZ7xjH7Vx6zS/zcu93/BEp1VwkIW1mEXCE=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
-github.com/u2386/ferrules v0.0.0-20200830153209-e1a2b903c68b h1:7gtdPXohRrfUv7Ius8fa7iJVZnthTnEhtsmiaWjxpZo=
-github.com/u2386/ferrules v0.0.0-20200830153209-e1a2b903c68b/go.mod h1:1FRXdalfwe1dPCegbMGZx4JxJ3FIBIO51PcHSN62eqU=
 github.com/vikyd/zero v0.0.0-20190921142904-0f738d0bc858 h1:b6CjC51KJa0bGZfvkxfjSgEKLhK016I++4bxhhh+lVE=
 github.com/vikyd/zero v0.0.0-20190921142904-0f738d0bc858/go.mod h1:AuUZRM/kTNOOSu3nAzKoDmUERB8S8JlwTkL1snMDzEs=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=

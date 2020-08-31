@@ -31,3 +31,8 @@ type Facts interface {
 type Engine interface {
 	Fire(Rules, Facts)
 }
+
+// RuleBuilder create a new rule builder
+func RuleBuilder() Incoming {
+	return &defaultRuleBuilder{}
+}

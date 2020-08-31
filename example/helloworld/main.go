@@ -6,7 +6,7 @@ import (
 	"github.com/u2386/ferrules/pkg/ferrules"
 )
 
-var rules ferrules.Rules = ferrules.RuleSet(ferrules.
+var rules ferrules.Rules = ferrules.RuleSet(ferrules.RuleBuilder().
 	Given(func(facts ferrules.Facts) bool {
 		return true
 	}).
