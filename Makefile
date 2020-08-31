@@ -5,6 +5,12 @@ else
 GOBIN=$(shell go env GOBIN)
 endif
 
+all: fmt vet
+
+# Run tests
+test: fmt vet
+	go test ./... -race -coverprofile cover.out
+
 # Run go fmt against code
 fmt:
 	go fmt ./...
@@ -12,7 +18,3 @@ fmt:
 # Run go vet against code
 vet:
 	go vet ./...
-
-# Run tests
-test: fmt vet
-	go test ./... -race -coverprofile cover.out
