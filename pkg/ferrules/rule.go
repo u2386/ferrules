@@ -125,11 +125,7 @@ func (b *defaultRuleBuilder) Build() Rule {
 		r.description = b.description
 	}
 
-	if zero.IsZeroVal(b.priority) {
-		panic("rule priority is missing")
-	} else {
-		r.priority = b.priority
-	}
+	r.priority = b.priority
 
 	if zero.IsZeroVal(b.condition) {
 		panic("rule condition is missing")
