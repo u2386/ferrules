@@ -9,7 +9,7 @@ all: fmt vet
 
 # Run tests
 test: fmt vet
-	go test ./... -race -coverprofile cover.out
+	go test github.com/u2386/ferrules/pkg/ferrules -race -coverprofile cover.out
 
 # Run go fmt against code
 fmt:

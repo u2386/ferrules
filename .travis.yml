@@ -12,7 +12,7 @@ install:
   - GO111MODULE=off go get github.com/mattn/goveralls
 
 script:
-  - go test -race -v -coverprofile=coverage.out ./...
+  - make test
 
 after_success:
   - $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
