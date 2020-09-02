@@ -15,22 +15,22 @@ type Fact struct {
 // FactSet creates a new facts set
 func FactSet() Facts {
 	return &factSet{
-		facts: make(map[FactName]Fact),
+		facts: make(map[FactName]*Fact),
 	}
 }
 
 type factSet struct {
-	facts map[FactName]Fact
+	facts map[FactName]*Fact
 }
 
 func (fs *factSet) Put(name string, value interface{}) {
-	fs.Add(Fact{
+	fs.Add(&Fact{
 		Name:  FactName(name),
 		Value: value,
 	})
 }
 
-func (fs *factSet) Add(fact Fact) {
+func (fs *factSet) Add(fact *Fact) {
 	fs.facts[fact.Name] = fact
 }
 
@@ -42,12 +42,12 @@ func (fs *factSet) Remove(name string) {
 	}
 }
 
-func (fs *factSet) Get(name string) (Fact, error) {
+func (fs *factSet) Get(name string) (*Fact, error) {
 	for key := range fs.facts {
 		if string(key) == name {
 			f := fs.facts[key]
 			return f, nil
 		}
 	}
-	return Fact{}, fmt.Errorf("%s not found", name)
+	return nil, fmt.Errorf("%s not found", name)
 }

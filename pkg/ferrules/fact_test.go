@@ -25,19 +25,19 @@ var _ = Describe("Fact", func() {
 		})
 
 		It("add operation", func() {
-			var fact Fact
+			var fact *Fact
 			in := set.(*factSet)
 			Expect(len(in.facts)).To(Equal(0))
 
-			fact = Fact{"fact A", "A"}
+			fact = &Fact{"fact A", "A"}
 			set.Add(fact)
 			Expect(len(in.facts)).To(Equal(1))
 
-			fact = Fact{"fact B", "B"}
+			fact = &Fact{"fact B", "B"}
 			set.Add(fact)
 			Expect(len(in.facts)).To(Equal(2))
 
-			fact = Fact{"fact A", "AA"}
+			fact = &Fact{"fact A", "AA"}
 			set.Add(fact)
 			Expect(len(in.facts)).To(Equal(2))
 		})
@@ -74,7 +74,7 @@ var _ = Describe("Fact", func() {
 		})
 
 		It("get operation", func() {
-			var fact Fact
+			var fact *Fact
 			var err error
 			in := set.(*factSet)
 			Expect(len(in.facts)).To(Equal(0))
@@ -96,7 +96,7 @@ var _ = Describe("Fact", func() {
 			Expect(fact.Value.(string)).To(Equal("AA"))
 			Expect(err).ShouldNot(HaveOccurred())
 
-			fact = Fact{"fact A", "A"}
+			fact = &Fact{"fact A", "A"}
 			set.Add(fact)
 			fact, err = set.Get("fact A")
 			Expect(fact.Name.String()).To(Equal("fact A"))

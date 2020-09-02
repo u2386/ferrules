@@ -22,9 +22,9 @@ type Rules interface {
 // Facts provides an interface for a set of facts
 type Facts interface {
 	Put(string, interface{})
-	Add(Fact)
+	Add(*Fact)
 	Remove(string)
-	Get(string) (Fact, error)
+	Get(string) (*Fact, error)
 }
 
 // Engine is an interface of rule engine
