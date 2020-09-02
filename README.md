@@ -5,3 +5,5 @@
 ## Overview
 
 Ferrules is a simple, stupid, declarative rule engine.
+
+**Notice**: WIP. See also `example/` folder.
