@@ -20,13 +20,13 @@ var _ = Describe("Rule Creation", func() {
 		}
 
 		It("get name", func() {
-			Expect(rule.Name().String()).To(Equal("this is a name"))
+			Expect(string(rule.Name())).To(Equal("this is a name"))
 		})
 		It("get description", func() {
 			Expect(rule.Description()).To(Equal("this is a description"))
 		})
 		It("get priority", func() {
-			Expect(rule.Priority().Int()).To(Equal(1))
+			Expect(int(rule.Priority())).To(Equal(1))
 		})
 	})
 })
@@ -87,9 +87,9 @@ var _ = Describe("Rule Build", func() {
 			WithDescription("Always say hello world").
 			Build()
 
-		Expect(rule.Name().String()).To(Equal("Hello World rule"))
+		Expect(string(rule.Name())).To(Equal("Hello World rule"))
 		Expect(rule.Description()).To(Equal("Always say hello world"))
-		Expect(rule.Priority().Int()).To(Equal(1))
+		Expect(int(rule.Priority())).To(Equal(1))
 	})
 })
 

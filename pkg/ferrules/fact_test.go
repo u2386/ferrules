@@ -86,20 +86,20 @@ var _ = Describe("Fact", func() {
 			Expect(len(in.facts)).To(Equal(2))
 
 			fact, err = set.Get("fact A")
-			Expect(fact.Name.String()).To(Equal("fact A"))
+			Expect(string(fact.Name)).To(Equal("fact A"))
 			Expect(fact.Value.(string)).To(Equal("A"))
 			Expect(err).ShouldNot(HaveOccurred())
 
 			set.Put("fact A", "AA")
 			fact, err = set.Get("fact A")
-			Expect(fact.Name.String()).To(Equal("fact A"))
+			Expect(string(fact.Name)).To(Equal("fact A"))
 			Expect(fact.Value.(string)).To(Equal("AA"))
 			Expect(err).ShouldNot(HaveOccurred())
 
 			fact = &Fact{"fact A", "A"}
 			set.Add(fact)
 			fact, err = set.Get("fact A")
-			Expect(fact.Name.String()).To(Equal("fact A"))
+			Expect(string(fact.Name)).To(Equal("fact A"))
 			Expect(fact.Value.(string)).To(Equal("A"))
 			Expect(err).ShouldNot(HaveOccurred())
 
