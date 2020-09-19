@@ -52,10 +52,19 @@ type compositeRuleBuilder struct {
 	description string
 	priority    RulePriority
 	rules       []Rule
+	build       func() Rule
 }
 
 func (b *compositeRuleBuilder) AnyOf(rules ...Rule) PriorityOngoing {
 	b.rules = rules
+	b.build = func() Rule {
+		r := &AnyOfRules{}
+		r.name = b.name
+		r.priority = b.priority
+		r.rules = b.rules
+		r.description = b.description
+		return r
+	}
 	return b
 }
 
@@ -79,26 +88,14 @@ func (b *compositeRuleBuilder) Build() Rule {
 		b = nil
 	}()
 
-	r := AnyOfRules{}
-
 	if zero.IsZeroVal(b.name) {
 		panic("rule name is missing")
-	} else {
-		r.name = b.name
 	}
-
 	if zero.IsZeroVal(b.description) {
 		panic("rule description is missing")
-	} else {
-		r.description = b.description
 	}
-
-	r.priority = b.priority
-
 	if zero.IsZeroVal(b.rules) {
 		panic("rule condition is missing")
-	} else {
-		r.rules = b.rules
 	}
-	return &r
+	return b.build()
 }
