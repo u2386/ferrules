@@ -27,3 +27,8 @@ type Outgoing interface {
 type Incoming interface {
 	Given(condition Condition) RequiredActionOngoing
 }
+
+// CompositeIncoming is the entry of fluent composite api
+type CompositeIncoming interface {
+	AnyOf(rules ...Rule) PriorityOngoing
+}

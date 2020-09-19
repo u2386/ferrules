@@ -36,3 +36,8 @@ type Engine interface {
 func RuleBuilder() Incoming {
 	return &defaultRuleBuilder{}
 }
+
+// CompositeRuleBuilder create a composite rule builder
+func CompositeRuleBuilder() CompositeIncoming {
+	return &compositeRuleBuilder{}
+}
