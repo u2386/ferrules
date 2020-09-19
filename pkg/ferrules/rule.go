@@ -35,7 +35,6 @@ func RuleSet(rules ...Rule) Rules {
 type DefaultRule struct {
 	name        RuleName
 	description string
-	priority    RulePriority
 	condition   Condition
 	actions     []Action
 }
@@ -48,11 +47,6 @@ func (r DefaultRule) Name() RuleName {
 // Description gives the description of rule
 func (r DefaultRule) Description() string {
 	return r.description
-}
-
-// Priority gives the priority of rule
-func (r DefaultRule) Priority() RulePriority {
-	return r.priority
 }
 
 func (r DefaultRule) evaluate(facts Facts) bool {
@@ -81,22 +75,17 @@ func (b *defaultRuleBuilder) Given(condition Condition) RequiredActionOngoing {
 	return b
 }
 
-func (b *defaultRuleBuilder) Will(action Action) ActionOngoing {
+func (b *defaultRuleBuilder) Will(action Action) AdditionalActionOngoing {
 	b.actions = []Action{action}
 	return b
 }
 
-func (b *defaultRuleBuilder) Then(action Action) ActionOngoing {
+func (b *defaultRuleBuilder) Then(action Action) AdditionalActionOngoing {
 	b.actions = append(b.actions, action)
 	return b
 }
 
-func (b *defaultRuleBuilder) Priority(n int) Outgoing {
-	b.priority = RulePriority(n)
-	return b
-}
-
-func (b *defaultRuleBuilder) WithName(name string) Outgoing {
+func (b *defaultRuleBuilder) WithName(name string) DescriptionOngoing {
 	b.name = RuleName(name)
 	return b
 }
@@ -124,8 +113,6 @@ func (b *defaultRuleBuilder) Build() Rule {
 	} else {
 		r.description = b.description
 	}
-
-	r.priority = b.priority
 
 	if zero.IsZeroVal(b.condition) {
 		panic("rule condition is missing")

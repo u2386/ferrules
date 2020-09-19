@@ -14,7 +14,6 @@ var _ = Describe("Rule Creation", func() {
 		var rule Rule = DefaultRule{
 			name:        "this is a name",
 			description: "this is a description",
-			priority:    1,
 			condition:   func(facts Facts) bool { return true },
 			actions:     []Action{func(facts Facts) {}},
 		}
@@ -25,9 +24,6 @@ var _ = Describe("Rule Creation", func() {
 		It("get description", func() {
 			Expect(rule.Description()).To(Equal("this is a description"))
 		})
-		It("get priority", func() {
-			Expect(int(rule.Priority())).To(Equal(1))
-		})
 	})
 })
 
@@ -36,7 +32,6 @@ var _ = Describe("Rule Condition", func() {
 		var rule Rule = DefaultRule{
 			name:        "this is a name",
 			description: "this is a description",
-			priority:    1,
 			condition:   func(facts Facts) bool { return true },
 			actions:     []Action{func(facts Facts) {}},
 		}
@@ -53,7 +48,6 @@ var _ = Describe("Rule Actions", func() {
 		var rule Rule = DefaultRule{
 			name:        "this is a name",
 			description: "this is a description",
-			priority:    1,
 			condition:   func(facts Facts) bool { return true },
 			actions: []Action{func(facts Facts) {
 				facts.Put("one", 1)
@@ -82,14 +76,12 @@ var _ = Describe("Rule Build", func() {
 			Will(func(facts Facts) {
 				fmt.Println("Hello")
 			}).
-			Priority(1).
 			WithName("Hello World rule").
 			WithDescription("Always say hello world").
 			Build()
 
 		Expect(string(rule.Name())).To(Equal("Hello World rule"))
 		Expect(rule.Description()).To(Equal("Always say hello world"))
-		Expect(int(rule.Priority())).To(Equal(1))
 	})
 })
 

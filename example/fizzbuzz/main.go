@@ -16,7 +16,6 @@ var rules ferrules.Rules = ferrules.RuleSet(
 				Will(func(facts ferrules.Facts) {
 					facts.Put("echo", "fizz")
 				}).
-				Priority(1).
 				WithName("Fizz Rule").
 				WithDescription("echo `fizz` if value is a multiple of 3").
 				Build(),
@@ -29,7 +28,6 @@ var rules ferrules.Rules = ferrules.RuleSet(
 				Will(func(facts ferrules.Facts) {
 					facts.Put("echo", "buzz")
 				}).
-				Priority(1).
 				WithName("Buzz Rule").
 				WithDescription("echo `buzz` if value is a multiple of 5").
 				Build(),
@@ -42,12 +40,10 @@ var rules ferrules.Rules = ferrules.RuleSet(
 					fact, _ := facts.Get("value")
 					facts.Put("echo", fact.Value)
 				}).
-				Priority(1).
 				WithName("Default Rule").
 				WithDescription("echo value").
 				Build(),
 		).
-		Priority(1).
 		WithName("FizzBuzz Game").
 		WithDescription("fizzbuzz puzzle game").
 		Build(),

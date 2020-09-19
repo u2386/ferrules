@@ -16,7 +16,6 @@ var _ = Describe("Rule Engine", func() {
 					fact, _ := facts.Get("000")
 					fact.Value = true
 				}).
-				Priority(1).
 				WithName("Rule 000").
 				WithDescription("Always say hello world").
 				Build(),
@@ -29,7 +28,6 @@ var _ = Describe("Rule Engine", func() {
 					fact, _ := facts.Get("001")
 					fact.Value = true
 				}).
-				Priority(1).
 				WithName("Rule 001").
 				WithDescription("Always say hello world").
 				Build(),
@@ -42,7 +40,6 @@ var _ = Describe("Rule Engine", func() {
 					fact, _ := facts.Get("002")
 					fact.Value = true
 				}).
-				Priority(1).
 				WithName("Rule 002").
 				WithDescription("Always say hello world").
 				Build(),

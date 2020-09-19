@@ -2,24 +2,27 @@ package ferrules
 
 // RequiredActionOngoing adds an action to a rule in a programming way
 type RequiredActionOngoing interface {
-	Will(Action) ActionOngoing
+	Will(Action) AdditionalActionOngoing
 }
 
-// ActionOngoing adds an action to a rule in a programming way
-type ActionOngoing interface {
-	Then(Action) ActionOngoing
-	PriorityOngoing
+// AdditionalActionOngoing adds an action to a rule in a programming way
+type AdditionalActionOngoing interface {
+	Then(Action) AdditionalActionOngoing
+	NameOngoing
 }
 
-// PriorityOngoing sets priority of rule
-type PriorityOngoing interface {
-	Priority(int) Outgoing
+// NameOngoing adds name to a rule
+type NameOngoing interface {
+	WithName(string) DescriptionOngoing
 }
 
-// Outgoing adds same descriptive attributes for a rule
-type Outgoing interface {
-	WithName(string) Outgoing
+// DescriptionOngoing sets a description for a rule
+type DescriptionOngoing interface {
 	WithDescription(string) Outgoing
+}
+
+// Outgoing is the terminal of fluent api
+type Outgoing interface {
 	Build() Rule
 }
 
@@ -30,5 +33,5 @@ type Incoming interface {
 
 // CompositeIncoming is the entry of fluent composite api
 type CompositeIncoming interface {
-	AnyOf(rules ...Rule) PriorityOngoing
+	AnyOf(rules ...Rule) NameOngoing
 }

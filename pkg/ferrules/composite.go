@@ -11,7 +11,6 @@ import (
 type AnyOfRules struct {
 	name        RuleName
 	description string
-	priority    RulePriority
 	rules       []Rule
 	applicable  Rule
 }
@@ -24,11 +23,6 @@ func (g *AnyOfRules) Name() RuleName {
 // Description gives the description of rule
 func (g *AnyOfRules) Description() string {
 	return g.description
-}
-
-// Priority gives the priority of rule
-func (g *AnyOfRules) Priority() RulePriority {
-	return g.priority
 }
 
 func (g *AnyOfRules) evaluate(facts Facts) bool {
@@ -50,17 +44,15 @@ func (g *AnyOfRules) execute(facts Facts) {
 type compositeRuleBuilder struct {
 	name        RuleName
 	description string
-	priority    RulePriority
 	rules       []Rule
 	build       func() Rule
 }
 
-func (b *compositeRuleBuilder) AnyOf(rules ...Rule) PriorityOngoing {
+func (b *compositeRuleBuilder) AnyOf(rules ...Rule) NameOngoing {
 	b.rules = rules
 	b.build = func() Rule {
 		r := &AnyOfRules{}
 		r.name = b.name
-		r.priority = b.priority
 		r.rules = b.rules
 		r.description = b.description
 		return r
@@ -68,12 +60,7 @@ func (b *compositeRuleBuilder) AnyOf(rules ...Rule) PriorityOngoing {
 	return b
 }
 
-func (b *compositeRuleBuilder) Priority(n int) Outgoing {
-	b.priority = RulePriority(n)
-	return b
-}
-
-func (b *compositeRuleBuilder) WithName(name string) Outgoing {
+func (b *compositeRuleBuilder) WithName(name string) DescriptionOngoing {
 	b.name = RuleName(name)
 	return b
 }

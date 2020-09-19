@@ -24,7 +24,6 @@ var _ = Describe("Composite", func() {
 						v++
 						fact.Value = v
 					}).
-					Priority(1).
 					WithName("Rule 01").
 					WithDescription("Increase 1").
 					Build(),
@@ -39,7 +38,6 @@ var _ = Describe("Composite", func() {
 						v++
 						fact.Value = v
 					}).
-					Priority(1).
 					WithName("Rule 02").
 					WithDescription("Increase 1").
 					Build(),
@@ -54,12 +52,10 @@ var _ = Describe("Composite", func() {
 						v++
 						fact.Value = v
 					}).
-					Priority(1).
 					WithName("Rule 03").
 					WithDescription("Increase 1").
 					Build(),
 			).
-			Priority(1).
 			WithName("a composite group").
 			WithDescription("OR logical").
 			Build())

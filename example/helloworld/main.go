@@ -13,7 +13,6 @@ var rules ferrules.Rules = ferrules.RuleSet(ferrules.RuleBuilder().
 	Will(func(facts ferrules.Facts) {
 		fmt.Println("Hello World")
 	}).
-	Priority(1).
 	WithName("Hello World rule").
 	WithDescription("Always say hello world").
 	Build(),

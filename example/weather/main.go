@@ -17,7 +17,6 @@ var rules = ferrules.RuleSet(ferrules.RuleBuilder().
 	Then(func(facts ferrules.Facts) {
 		facts.Put("umbrella", "open")
 	}).
-	Priority(1).
 	WithName("weather rule").
 	WithDescription("if it rains then take an umbrella").
 	Build())

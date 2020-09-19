@@ -8,7 +8,6 @@ import (
 type Rule interface {
 	evaluate(Facts) bool
 	execute(Facts)
-	Priority() RulePriority
 	Name() RuleName
 	Description() string
 }
